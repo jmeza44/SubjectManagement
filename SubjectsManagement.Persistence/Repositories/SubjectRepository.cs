@@ -1,18 +1,19 @@
 ﻿using SubjectsManagement.Domain.Abstractions;
 using SubjectsManagement.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SubjectsManagement.Persistence.Repositories
 {
     public class SubjectRepository : ISubjectRepository
     {
+        private readonly AppDbContext _context;
+        public SubjectRepository(AppDbContext context)
+        {
+            _context = context;
+        }
         public Subject AddSubject(Subject subject)
         {
-            throw new NotImplementedException();
+            var addedSubject = _context.Subjects.Add(subject);
+            return addedSubject.Entity;
         }
 
         public Subject DeleteSubject(int id)
