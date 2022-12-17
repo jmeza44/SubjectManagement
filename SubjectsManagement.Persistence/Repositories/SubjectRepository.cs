@@ -12,8 +12,8 @@ namespace SubjectsManagement.Persistence.Repositories
         }
         public Subject AddSubject(Subject subject)
         {
-            var addedSubject = _context.Subjects.Add(subject);
-            return addedSubject.Entity;
+            var _subject = _context.Subjects.Add(subject);
+            return _subject.Entity;
         }
 
         public Subject DeleteSubject(int id)
@@ -28,7 +28,8 @@ namespace SubjectsManagement.Persistence.Repositories
 
         public Subject GetSubject(int id)
         {
-            throw new NotImplementedException();
+            var _subject = _context.Subjects.FirstOrDefault(x => x.Id == id);
+            return _subject;
         }
 
         public Subject UpdateSubject(int id, Subject subject)
