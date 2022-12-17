@@ -9,5 +9,6 @@
         public string Type { get; set; }
         public string Description { get; set; }
         public Grade Grade { get; set; }
+        public Court Court { get; set; }
     }
 }
