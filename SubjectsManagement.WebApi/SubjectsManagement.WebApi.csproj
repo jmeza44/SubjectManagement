@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SubjectsManagement.Domain\SubjectsManagement.Domain.csproj" />
     <ProjectReference Include="..\SubjectsManagement.Persistence\SubjectsManagement.Persistence.csproj" />
+    <ProjectReference Include="..\SubjectsManagement.Services\SubjectsManagement.Services.csproj" />
   </ItemGroup>
 
 </Project>

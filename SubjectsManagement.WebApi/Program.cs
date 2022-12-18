@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SubjectsManagement.Domain.Abstractions;
 using SubjectsManagement.Persistence;
 using SubjectsManagement.Persistence.Repositories;
+using SubjectsManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var ConnectionString = builder.Configuration.GetConnectionString("Default");
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(ConnectionString));
 builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

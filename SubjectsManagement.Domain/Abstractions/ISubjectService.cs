@@ -1,10 +1,14 @@
-﻿using SubjectsManagement.Domain.Models;
+﻿using SubjectsManagement.Domain.Dtos;
+using SubjectsManagement.Domain.Models;
 
 namespace SubjectsManagement.Domain.Abstractions
 {
     public interface ISubjectService
     {
-        void AssignSemester(Semester semester);
-        void AssignTeacher(Teacher teacher);
+        Subject AddSubject(SubjectDto subject);
+        Subject DeleteSubject(int id);
+        List<Subject> GetAllSubjects();
+        Subject GetSubject(int id);
+        Subject UpdateSubject(int id, SubjectDto subject);
     }
 }
