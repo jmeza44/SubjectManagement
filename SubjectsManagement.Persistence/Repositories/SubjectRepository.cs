@@ -1,4 +1,5 @@
-﻿using SubjectsManagement.Domain.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using SubjectsManagement.Domain.Abstractions;
 using SubjectsManagement.Domain.Models;
 
 namespace SubjectsManagement.Persistence.Repositories
@@ -23,12 +24,15 @@ namespace SubjectsManagement.Persistence.Repositories
 
         public List<Subject> GetAllSubjects()
         {
-            throw new NotImplementedException();
+            var _subjects = _context.Subjects.ToList();
+            return _subjects;
         }
 
         public Subject GetSubject(int id)
         {
-            var _subject = _context.Subjects.FirstOrDefault(x => x.Id == id);
+            var _subject = _context.Subjects.Include(s => s.Teacher)
+                .Include(s => s.Semester)
+                .FirstOrDefault(s => s.Id == id);
             return _subject;
         }
 
