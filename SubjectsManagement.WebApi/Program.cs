@@ -3,6 +3,7 @@ using SubjectsManagement.Domain.Abstractions;
 using SubjectsManagement.Persistence;
 using SubjectsManagement.Persistence.Repositories;
 using SubjectsManagement.Services;
+using SubjectsManagement.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 var ConnectionString = builder.Configuration.GetConnectionString("Default");
@@ -32,5 +33,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+AppDbInitializer.Seed(app);
 
 app.Run();
