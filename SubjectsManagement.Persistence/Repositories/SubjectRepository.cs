@@ -26,6 +26,8 @@ namespace SubjectsManagement.Persistence.Repositories
                 .FirstOrDefault(s => s.Id == id);
             if (_subject != null)
             {
+                var _scheduledClasses = _context.ScheduledClasses.Where(s => s.Subject.Id == id).ToArray();
+                _context.ScheduledClasses.RemoveRange(_scheduledClasses);
                 _context.Subjects.Remove(_subject);
                 _context.SaveChanges();
             }

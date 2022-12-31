@@ -1,4 +1,5 @@
 ﻿using SubjectsManagement.Domain.Abstractions;
+using SubjectsManagement.Domain.Common;
 using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 
@@ -12,29 +13,95 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public Subject AddSubject(SubjectDto subject)
+        public OperationResult<Subject?> AddSubject(SubjectDto subject)
         {
-            return _repo.AddSubject((Subject)subject);
+            var _subject = _repo.AddSubject((Subject)subject); ;
+            if (_subject != null)
+            {
+                return new OperationResult<Subject?>()
+                {
+                    Message = "Success",
+                    Description = "Subject added propertly",
+                    Result = _subject
+                };
+            }
+            return new OperationResult<Subject?>()
+            {
+                Message = "Error",
+                Description = "Subject couldn't be added",
+                Result = null
+            };
         }
 
-        public Subject DeleteSubject(int id)
+        public OperationResult<Subject?> DeleteSubject(int id)
         {
-            return _repo.DeleteSubject(id);
+            var _subject = _repo.DeleteSubject(id);
+            if (_subject != null)
+            {
+                return new OperationResult<Subject?>()
+                {
+                    Message = "Success",
+                    Description = "Subject deleted propertly",
+                    Result = _subject
+                };
+            }
+            return new OperationResult<Subject?>()
+            {
+                Message = "Error",
+                Description = $"Subject with id {id} found",
+                Result = null
+            };
         }
 
-        public List<Subject> GetAllSubjects()
+        public OperationResult<List<Subject>> GetAllSubjects()
         {
-            return _repo.GetAllSubjects();
+            var _subject = _repo.GetAllSubjects();
+            return new OperationResult<List<Subject>>()
+            {
+                Message = "Success",
+                Description = $"{_subject.Count} Subject(s) retrieved propertly",
+                Result = _subject
+            };
         }
 
-        public Subject GetSubject(int id)
+        public OperationResult<Subject?> GetSubject(int id)
         {
-            return _repo.GetSubject(id);
+            var _subject = _repo.GetSubject(id);
+            if (_subject != null)
+            {
+                return new OperationResult<Subject?>()
+                {
+                    Message = "Success",
+                    Description = $"Subject with id {id} found",
+                    Result = _subject
+                };
+            }
+            return new OperationResult<Subject?>()
+            {
+                Message = "Error",
+                Description = $"Subject with id {id} couldn't be found",
+                Result = null
+            };
         }
 
-        public Subject UpdateSubject(int id, SubjectDto subject)
+        public OperationResult<Subject?> UpdateSubject(int id, SubjectDto subject)
         {
-            return _repo.UpdateSubject(id, (Subject)subject);
+            var _subject = _repo.UpdateSubject(id, (Subject)subject);
+            if (_subject != null)
+            {
+                return new OperationResult<Subject?>()
+                {
+                    Message = "Success",
+                    Description = "Subject updated propertly",
+                    Result = _subject
+                };
+            }
+            return new OperationResult<Subject?>()
+            {
+                Message = "Error",
+                Description = $"Subject with id {id} couldn't be found",
+                Result = null
+            };
         }
     }
 }

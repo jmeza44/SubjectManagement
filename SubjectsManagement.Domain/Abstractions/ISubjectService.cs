@@ -1,14 +1,15 @@
-﻿using SubjectsManagement.Domain.Dtos;
+﻿using SubjectsManagement.Domain.Common;
+using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 
 namespace SubjectsManagement.Domain.Abstractions
 {
     public interface ISubjectService
     {
-        Subject AddSubject(SubjectDto subject);
-        Subject DeleteSubject(int id);
-        List<Subject> GetAllSubjects();
-        Subject GetSubject(int id);
-        Subject UpdateSubject(int id, SubjectDto subject);
+        OperationResult<Subject> AddSubject(SubjectDto subject);
+        OperationResult<Subject> DeleteSubject(int id);
+        OperationResult<List<Subject>> GetAllSubjects();
+        OperationResult<Subject> GetSubject(int id);
+        OperationResult<Subject> UpdateSubject(int id, SubjectDto subject);
     }
 }
