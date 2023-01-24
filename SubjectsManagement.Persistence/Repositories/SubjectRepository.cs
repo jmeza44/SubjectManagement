@@ -36,7 +36,8 @@ namespace SubjectsManagement.Persistence.Repositories
 
         public List<Subject> GetAllSubjects()
         {
-            var _subjects = _context.Subjects.Include(s => s.Semester)
+            var _subjects = _context.Subjects
+                .Include(s => s.Semester)
                 .Include(s => s.Teacher)
                 .ToList();
             return _subjects;
@@ -52,17 +53,10 @@ namespace SubjectsManagement.Persistence.Repositories
 
         public Subject UpdateSubject(int id, Subject subject)
         {
-            var _subject = _context.Subjects.Include(s => s.Teacher)
-                .Include(s => s.Semester)
-                .FirstOrDefault(s => s.Id == id);
+            var _subject = _context.Subjects.FirstOrDefault(s => s.Id == id);
             if (_subject != null)
             {
                 _subject.Name = subject.Name;
-                _subject.Semester.CardinalNumber = subject.Semester.CardinalNumber;
-                _subject.Semester.OrdinalNumber = subject.Semester.OrdinalNumber;
-                _subject.Teacher.Name = subject.Teacher.Name;
-                _subject.Teacher.PhoneNumber = subject.Teacher.PhoneNumber;
-                _subject.Teacher.Email = subject.Teacher.Email;
                 _context.SaveChanges();
             }
             return _subject;

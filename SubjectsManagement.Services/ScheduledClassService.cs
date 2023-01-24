@@ -8,69 +8,20 @@ namespace SubjectsManagement.Services
     public class ScheduledClassService : IScheduledClassService
     {
         private readonly IScheduledClassRepository _repo;
-        private readonly IClassroomRepository _repoClassroom;
-        private readonly ISubjectRepository _repoSubject;
 
-        public ScheduledClassService(IScheduledClassRepository repo, IClassroomRepository repoClassroom, ISubjectRepository repoSubject)
+        public ScheduledClassService(IScheduledClassRepository repo)
         {
             _repo = repo;
-            _repoClassroom = repoClassroom;
-            _repoSubject = repoSubject;
         }
 
-        public OperationResult<ScheduledClass?> AddScheduledClass(ScheduledClassDto scheduledClass)
+        public OperationResult<ScheduledClass?> AddScheduledClass(ScheduledClassDto scheduledClassDto)
         {
-            var _classroom = _repoClassroom.GetClassroom(scheduledClass.ClassroomId);
-            var _subject = _repoSubject.GetSubject(scheduledClass.SubjectId);
-            if (_classroom != null && _subject != null)
-            {
-                var _scheduledClass = _repo.AddScheduledClass(new ScheduledClass()
-                {
-                    StartTime = scheduledClass.StartTime,
-                    Duration = scheduledClass.Duration,
-                    Classroom = _classroom,
-                    Subject = _subject
-                });
-                return new OperationResult<ScheduledClass?>()
-                {
-                    Message = "Success",
-                    Description = "ScheduledClass added propertly",
-                    Result = _scheduledClass
-                };
-            }
+            var _scheduledClass = _repo.AddScheduledClass((ScheduledClass)scheduledClassDto);
             return new OperationResult<ScheduledClass?>()
             {
-                Message = "Error",
-                Description = "Classroom or Subject cloudn't be found",
-                Result = null
-            };
-        }
-
-        public OperationResult<ScheduledClass?> AddScheduledClassWithClassroom(ScheduledClassWithClassroomDto scheduledClass)
-        {
-            var _classroom = _repoClassroom.AddClassroom((Classroom)scheduledClass.Classroom);
-            var _subject = _repoSubject.GetSubject(scheduledClass.SubjectId);
-            if (_subject != null)
-            {
-                var _scheduledClass = _repo.AddScheduledClass(new ScheduledClass()
-                {
-                    StartTime = scheduledClass.StartTime,
-                    Duration = scheduledClass.Duration,
-                    Classroom = _classroom,
-                    Subject = _subject,
-                });
-                return new OperationResult<ScheduledClass?>()
-                {
-                    Message = "Success",
-                    Description = "ScheduledClass added propertly",
-                    Result = _scheduledClass
-                };
-            }
-            return new OperationResult<ScheduledClass?>()
-            {
-                Message = "Error",
-                Description = "Subject cloudn't be found",
-                Result = null
+                Message = "Success",
+                Description = "ScheduledClass added propertly",
+                Result = _scheduledClass
             };
         }
 
@@ -126,9 +77,9 @@ namespace SubjectsManagement.Services
             };
         }
 
-        public OperationResult<ScheduledClass?> UpdateScheduledClass(int id, ScheduledClassDto scheduledClass)
+        public OperationResult<ScheduledClass?> UpdateScheduledClass(int id, ScheduledClassDto scheduledClassDto)
         {
-            var _scheduledClass = _repo.UpdateScheduledClass(id, (ScheduledClass)scheduledClass);
+            var _scheduledClass = _repo.UpdateScheduledClass(id, (ScheduledClass)scheduledClassDto);
             if (_scheduledClass != null)
             {
                 return new OperationResult<ScheduledClass?>()

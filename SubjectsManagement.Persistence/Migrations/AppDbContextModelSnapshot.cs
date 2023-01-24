@@ -30,7 +30,7 @@ namespace SubjectsManagement.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CourtId")
+                    b.Property<int>("CourtId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Deadline")
@@ -39,7 +39,7 @@ namespace SubjectsManagement.Persistence.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GradeId")
+                    b.Property<int>("GradeId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsIndividual")
@@ -87,10 +87,10 @@ namespace SubjectsManagement.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("GradeId")
+                    b.Property<int>("GradeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubjectId")
+                    b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -129,7 +129,7 @@ namespace SubjectsManagement.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ClassroomId")
+                    b.Property<int>("ClassroomId")
                         .HasColumnType("int");
 
                     b.Property<double>("Duration")
@@ -138,7 +138,7 @@ namespace SubjectsManagement.Persistence.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("SubjectId")
+                    b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -180,10 +180,10 @@ namespace SubjectsManagement.Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SemesterId")
+                    b.Property<int>("SemesterId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeacherId")
+                    b.Property<int>("TeacherId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -225,7 +225,7 @@ namespace SubjectsManagement.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CourtId")
+                    b.Property<int>("CourtId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -245,11 +245,15 @@ namespace SubjectsManagement.Persistence.Migrations
                 {
                     b.HasOne("SubjectsManagement.Domain.Models.Court", "Court")
                         .WithMany()
-                        .HasForeignKey("CourtId");
+                        .HasForeignKey("CourtId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SubjectsManagement.Domain.Models.Grade", "Grade")
                         .WithMany()
-                        .HasForeignKey("GradeId");
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Court");
 
@@ -260,11 +264,15 @@ namespace SubjectsManagement.Persistence.Migrations
                 {
                     b.HasOne("SubjectsManagement.Domain.Models.Grade", "Grade")
                         .WithMany()
-                        .HasForeignKey("GradeId");
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SubjectsManagement.Domain.Models.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectId");
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Grade");
 
@@ -275,11 +283,15 @@ namespace SubjectsManagement.Persistence.Migrations
                 {
                     b.HasOne("SubjectsManagement.Domain.Models.Classroom", "Classroom")
                         .WithMany()
-                        .HasForeignKey("ClassroomId");
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SubjectsManagement.Domain.Models.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectId");
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Classroom");
 
@@ -290,11 +302,15 @@ namespace SubjectsManagement.Persistence.Migrations
                 {
                     b.HasOne("SubjectsManagement.Domain.Models.Semester", "Semester")
                         .WithMany()
-                        .HasForeignKey("SemesterId");
+                        .HasForeignKey("SemesterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SubjectsManagement.Domain.Models.Teacher", "Teacher")
                         .WithMany()
-                        .HasForeignKey("TeacherId");
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Semester");
 
@@ -305,7 +321,9 @@ namespace SubjectsManagement.Persistence.Migrations
                 {
                     b.HasOne("SubjectsManagement.Domain.Models.Court", "Court")
                         .WithMany()
-                        .HasForeignKey("CourtId");
+                        .HasForeignKey("CourtId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Court");
                 });

@@ -14,9 +14,9 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public OperationResult<Classroom?> AddClassroom(ClassroomDto classroom)
+        public OperationResult<Classroom?> AddClassroom(ClassroomDto classroomDto)
         {
-            var _classroom = _repo.AddClassroom((Classroom)classroom);
+            var _classroom = _repo.AddClassroom((Classroom)classroomDto);
             if (_classroom != null)
             {
                 return new OperationResult<Classroom?>()
@@ -85,16 +85,16 @@ namespace SubjectsManagement.Services
             };
         }
 
-        public OperationResult<Classroom?> UpdateClassroom(int id, ClassroomDto classroom)
+        public OperationResult<Classroom?> UpdateClassroom(int id, ClassroomDto classroomDto)
         {
-            var _classroom = _repo.UpdateClassRoom(id, (Classroom)classroom);
+            var _classroom = _repo.UpdateClassRoom(id, (Classroom)classroomDto);
             if (_classroom != null)
             {
                 return new OperationResult<Classroom?>()
                 {
                     Message = "Success",
                     Description = "Classroom updated propertly",
-                    Result = _repo.UpdateClassRoom(id, (Classroom)classroom)
+                    Result = _repo.UpdateClassRoom(id, (Classroom)classroomDto)
                 };
             }
             return new OperationResult<Classroom?>()

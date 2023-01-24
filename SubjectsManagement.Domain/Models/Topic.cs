@@ -11,6 +11,7 @@ namespace SubjectsManagement.Domain.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string References { get; set; }
+        public int CourtId { get; set; }
         public Court Court { get; set; }
     }
 }

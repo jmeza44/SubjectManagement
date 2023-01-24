@@ -20,6 +20,10 @@ builder.Services.AddScoped<IClassroomService, ClassroomService>();
 builder.Services.AddScoped<IClassroomRepository, ClassroomRepository>();
 builder.Services.AddScoped<IScheduledClassService, ScheduledClassService>();
 builder.Services.AddScoped<IScheduledClassRepository, ScheduledClassRepository>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<ISemesterService, SemesterService>();
+builder.Services.AddScoped<ISemesterRepository, SemesterRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins,

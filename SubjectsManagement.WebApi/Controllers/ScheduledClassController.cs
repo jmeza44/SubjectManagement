@@ -8,12 +8,10 @@ namespace SubjectsManagement.WebApi.Controllers
     [ApiController]
     public class ScheduledClassController : ControllerBase
     {
-        private readonly ILogger<ScheduledClassController> _logger;
         private readonly IScheduledClassService _serv;
 
-        public ScheduledClassController(ILogger<ScheduledClassController> logger, IScheduledClassService serv)
+        public ScheduledClassController(IScheduledClassService serv)
         {
-            _logger = logger;
             _serv = serv;
         }
 
@@ -21,13 +19,6 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult AddScheduledClass([FromBody] ScheduledClassDto scheduledClass)
         {
             var _scheduledClass = _serv.AddScheduledClass(scheduledClass);
-            return Ok(_scheduledClass);
-        }
-
-        [HttpPost("WithClassroom")]
-        public IActionResult AddScheduledClassWithClassroom([FromBody] ScheduledClassWithClassroomDto scheduledClass)
-        {
-            var _scheduledClass = _serv.AddScheduledClassWithClassroom(scheduledClass);
             return Ok(_scheduledClass);
         }
 

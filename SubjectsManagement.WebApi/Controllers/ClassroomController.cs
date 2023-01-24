@@ -9,12 +9,10 @@ namespace SubjectsManagement.WebApi.Controllers
     [ApiController]
     public class ClassroomController : ControllerBase
     {
-        private readonly ILogger<ClassroomController> _logger;
         private readonly IClassroomService _serv;
 
-        public ClassroomController(ILogger<ClassroomController> logger, IClassroomService serv)
+        public ClassroomController(IClassroomService serv)
         {
-            _logger = logger;
             _serv = serv;
         }
 
