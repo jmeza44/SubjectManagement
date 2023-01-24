@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SubjectsManagement.Domain.Abstractions;
 using SubjectsManagement.Domain.Dtos;
 
@@ -7,19 +6,18 @@ namespace SubjectsManagement.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClassroomController : ControllerBase
+    public class SemesterController : ControllerBase
     {
-        private readonly IClassroomService _serv;
-
-        public ClassroomController(IClassroomService serv)
+        private readonly ISemesterService _serv;
+        public SemesterController(ISemesterService serv)
         {
             _serv = serv;
         }
 
         [HttpPost]
-        public IActionResult AddClassroom([FromBody] ClassroomDto classroomDto)
+        public IActionResult AddSemester([FromBody] SemesterDto semester)
         {
-            var result = _serv.AddClassroom(classroomDto);
+            var result = _serv.AddSemester(semester);
             if (result.Result != null)
             {
                 return Ok(result);
@@ -28,9 +26,9 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteClassroom([FromQuery] int id)
+        public IActionResult DeleteSemester([FromQuery] int id)
         {
-            var result = _serv.DeleteClassroom(id);
+            var result = _serv.DeleteSemester(id);
             if (result.Result != null)
             {
                 return Ok(result);
@@ -39,16 +37,16 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllClassrooms()
+        public IActionResult GetAllSemesters()
         {
-            var result = _serv.GetAllClassrooms();
+            var result = _serv.GetAllSemesters();
             return Ok(result);
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetClassroom(int id)
+        public IActionResult GetSemester(int id)
         {
-            var result = _serv.GetClassroom(id);
+            var result = _serv.GetSemester(id);
             if (result.Result != null)
             {
                 return Ok(result);
@@ -57,9 +55,9 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateClassroom([FromQuery] int id, [FromBody] ClassroomDto classroomDto)
+        public IActionResult UpdateSemester([FromQuery] int id, [FromBody] SemesterDto semester)
         {
-            var result = _serv.UpdateClassroom(id, classroomDto);
+            var result = _serv.UpdateSemester(id, semester);
             if (result.Result != null)
             {
                 return Ok(result);

@@ -14,95 +14,34 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public OperationResult<Classroom?> AddClassroom(ClassroomDto classroom)
+        public OperationResult<Classroom?> AddClassroom(ClassroomDto classroomDto)
         {
-            var _classroom = _repo.AddClassroom((Classroom)classroom);
-            if (_classroom != null)
-            {
-                return new OperationResult<Classroom?>()
-                {
-                    Message = "Success",
-                    Description = "Classroom added propertly",
-                    Result = _classroom
-                };
-            }
-            return new OperationResult<Classroom?>()
-            {
-                Message = "Error",
-                Description = "Classroom couldn't be added",
-                Result = null
-            };
+            var classroom = _repo.AddClassroom((Classroom)classroomDto);
+            return new AddOperationResult<Classroom?>(classroom, "Classroom");
         }
 
         public OperationResult<Classroom?> DeleteClassroom(int id)
         {
-            var _classroom = _repo.DeleteClassroom(id);
-            if (_classroom != null)
-            {
-                return new OperationResult<Classroom?>()
-                {
-                    Message = "Success",
-                    Description = "Classroom deleted propertly",
-                    Result = _classroom
-                };
-            }
-            return new OperationResult<Classroom?>()
-            {
-                Message = "Error",
-                Description = $"Classroom with id {id} found",
-                Result = null
-            };
+            var classroom = _repo.DeleteClassroom(id);
+            return new DeleteOperationResult<Classroom?>(classroom, "Classroom", id);
         }
 
         public OperationResult<List<Classroom>> GetAllClassrooms()
         {
-            var _classroom = _repo.GetAllClassrooms();
-            return new OperationResult<List<Classroom>>()
-            {
-                Message = "Success",
-                Description = $"{_classroom.Count} Classroom(s) retrieved propertly",
-                Result = _classroom
-            };
+            var classrooms = _repo.GetAllClassrooms();
+            return new GetAllOperationResult<List<Classroom>>(classrooms, "Classroom", classrooms.Count);
         }
 
         public OperationResult<Classroom?> GetClassroom(int id)
         {
             var _classroom = _repo.GetClassroom(id);
-            if (_classroom != null)
-            {
-                return new OperationResult<Classroom?>()
-                {
-                    Message = "Success",
-                    Description = $"Classroom with id {id} found",
-                    Result = _classroom
-                };
-            }
-            return new OperationResult<Classroom?>()
-            {
-                Message = "Error",
-                Description = $"Classroom with id {id} couldn't be found",
-                Result = null
-            };
+                return new GetOperationResult<Classroom?>(_classroom, "Classroom", id);
         }
 
-        public OperationResult<Classroom?> UpdateClassroom(int id, ClassroomDto classroom)
+        public OperationResult<Classroom?> UpdateClassroom(int id, ClassroomDto classroomDto)
         {
-            var _classroom = _repo.UpdateClassRoom(id, (Classroom)classroom);
-            if (_classroom != null)
-            {
-                return new OperationResult<Classroom?>()
-                {
-                    Message = "Success",
-                    Description = "Classroom updated propertly",
-                    Result = _repo.UpdateClassRoom(id, (Classroom)classroom)
-                };
-            }
-            return new OperationResult<Classroom?>()
-            {
-                Message = "Error",
-                Description = $"Classroom with id {id} couldn't be found",
-                Result = null
-            };
+            var classroom = _repo.UpdateClassRoom(id, (Classroom)classroomDto);
+            return new UpdateOperationResult<Classroom?>(classroom, "Classroom", id);
         }
     }
 }

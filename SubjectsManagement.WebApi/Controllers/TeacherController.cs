@@ -7,19 +7,19 @@ namespace SubjectsManagement.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClassroomController : ControllerBase
+    public class TeacherController : ControllerBase
     {
-        private readonly IClassroomService _serv;
+        private readonly ITeacherService _serv;
 
-        public ClassroomController(IClassroomService serv)
+        public TeacherController(ITeacherService serv)
         {
             _serv = serv;
         }
 
         [HttpPost]
-        public IActionResult AddClassroom([FromBody] ClassroomDto classroomDto)
+        public IActionResult AddTeacher([FromBody] TeacherDto teacherDto)
         {
-            var result = _serv.AddClassroom(classroomDto);
+            var result = _serv.AddTeacher(teacherDto);
             if (result.Result != null)
             {
                 return Ok(result);
@@ -28,9 +28,9 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteClassroom([FromQuery] int id)
+        public IActionResult DeleteTeacher([FromQuery] int id)
         {
-            var result = _serv.DeleteClassroom(id);
+            var result = _serv.DeleteTeacher(id);
             if (result.Result != null)
             {
                 return Ok(result);
@@ -39,16 +39,16 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllClassrooms()
+        public IActionResult GetAllTeachers()
         {
-            var result = _serv.GetAllClassrooms();
+            var result = _serv.GetAllTeachers();
             return Ok(result);
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetClassroom(int id)
+        public IActionResult GetTeacher(int id)
         {
-            var result = _serv.GetClassroom(id);
+            var result = _serv.GetTeacher(id);
             if (result.Result != null)
             {
                 return Ok(result);
@@ -57,9 +57,9 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateClassroom([FromQuery] int id, [FromBody] ClassroomDto classroomDto)
+        public IActionResult UpdateTeacher([FromQuery] int id, [FromBody] TeacherDto teacherDto)
         {
-            var result = _serv.UpdateClassroom(id, classroomDto);
+            var result = _serv.UpdateTeacher(id, teacherDto);
             if (result.Result != null)
             {
                 return Ok(result);

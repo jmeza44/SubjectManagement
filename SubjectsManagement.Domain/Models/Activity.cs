@@ -8,7 +8,9 @@
         public bool IsIndividual { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
+        public int GradeId { get; set; }
         public Grade Grade { get; set; }
+        public int CourtId { get; set; }
         public Court Court { get; set; }
     }
 }

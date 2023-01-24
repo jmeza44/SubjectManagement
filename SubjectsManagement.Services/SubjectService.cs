@@ -13,9 +13,9 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public OperationResult<Subject?> AddSubject(SubjectDto subject)
+        public OperationResult<Subject?> AddSubject(SubjectDto subjectDto)
         {
-            var _subject = _repo.AddSubject((Subject)subject); ;
+            var _subject = _repo.AddSubject((Subject)subjectDto); ;
             if (_subject != null)
             {
                 return new OperationResult<Subject?>()
@@ -84,9 +84,9 @@ namespace SubjectsManagement.Services
             };
         }
 
-        public OperationResult<Subject?> UpdateSubject(int id, SubjectDto subject)
+        public OperationResult<Subject?> UpdateSubject(int id, SubjectDto subjectDto)
         {
-            var _subject = _repo.UpdateSubject(id, (Subject)subject);
+            var _subject = _repo.UpdateSubject(id, (Subject)subjectDto);
             if (_subject != null)
             {
                 return new OperationResult<Subject?>()
