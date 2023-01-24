@@ -19,14 +19,14 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddSubject(SubjectDto subject)
+        public IActionResult AddSubject([FromBody] SubjectDto subject)
         {
             var _subject = _serv.AddSubject(subject);
             return Ok(_subject);
         }
 
-        [HttpDelete("{id:int}")]
-        public IActionResult DeleteSubject(int id)
+        [HttpDelete]
+        public IActionResult DeleteSubject([FromQuery] int id)
         {
             var _subject = _serv.DeleteSubject(id);
             return Ok(_subject);
@@ -46,8 +46,8 @@ namespace SubjectsManagement.WebApi.Controllers
             return _subject == null ? NotFound() : Ok(_subject);
         }
 
-        [HttpPut("{id:int}")]
-        public IActionResult UpdateSubject(int id, SubjectDto subject)
+        [HttpPut]
+        public IActionResult UpdateSubject([FromQuery] int id, [FromBody] SubjectDto subject)
         {
             var _subject = _serv.UpdateSubject(id, subject);
             return Ok(_subject);
