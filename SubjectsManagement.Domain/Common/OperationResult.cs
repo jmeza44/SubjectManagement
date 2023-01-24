@@ -8,9 +8,9 @@ namespace SubjectsManagement.Domain.Common
         public string Description { get; set; } = "Not specified";
         public T Result { get; set; }
     }
-    public class AddedOperationResult<T> : OperationResult<T>
+    public class AddOperationResult<T> : OperationResult<T>
     {
-        public AddedOperationResult(T result, string entity)
+        public AddOperationResult(T result, string entity)
         {
             Result = result;
             if (Result != null)
@@ -25,9 +25,9 @@ namespace SubjectsManagement.Domain.Common
             }
         }
     }
-    public class DeletedOperationResult<T> : OperationResult<T>
+    public class DeleteOperationResult<T> : OperationResult<T>
     {
-        public DeletedOperationResult(T result, string entity, int id)
+        public DeleteOperationResult(T result, string entity, int id)
         {
             Result = result;
             if (Result != null)

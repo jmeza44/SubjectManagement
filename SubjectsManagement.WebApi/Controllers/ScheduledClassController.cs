@@ -16,38 +16,38 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddScheduledClass([FromBody] ScheduledClassDto scheduledClass)
+        public IActionResult AddScheduledClass([FromBody] ScheduledClassDto scheduledClassDto)
         {
-            var _scheduledClass = _serv.AddScheduledClass(scheduledClass);
-            return Ok(_scheduledClass);
+            var result = _serv.AddScheduledClass(scheduledClassDto);
+            return Ok(result);
         }
 
         [HttpDelete]
         public IActionResult DeleteScheduledClass([FromQuery] int id)
         {
-            var _subject = _serv.DeleteScheduledClass(id);
-            return Ok(_subject);
+            var result = _serv.DeleteScheduledClass(id);
+            return Ok(result);
         }
 
         [HttpGet]
         public IActionResult GetAllScheduledClassess()
         {
-            var _subjects = _serv.GetAllScheduledClassess();
-            return Ok(_subjects);
+            var result = _serv.GetAllScheduledClassess();
+            return Ok(result);
         }
 
         [HttpGet("{id:int}")]
         public IActionResult GetScheduledClass(int id)
         {
-            var _subject = _serv.GetScheduledClass(id);
-            return _subject == null ? NotFound() : Ok(_subject);
+            var result = _serv.GetScheduledClass(id);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpPut]
-        public IActionResult UpdateScheduledClass([FromQuery] int id, [FromBody] ScheduledClassDto scheduledClass)
+        public IActionResult UpdateScheduledClass([FromQuery] int id, [FromBody] ScheduledClassDto scheduledClassDto)
         {
-            var _subject = _serv.UpdateScheduledClass(id, scheduledClass);
-            return Ok(_subject);
+            var result = _serv.UpdateScheduledClass(id, scheduledClassDto);
+            return Ok(result);
         }
     }
 }

@@ -16,13 +16,13 @@ namespace SubjectsManagement.Services
         public OperationResult<Semester> AddSemester(SemesterDto semesterDto)
         {
             var semesterAdded = _repo.AddSemester((Semester)semesterDto);
-            return new AddedOperationResult<Semester>(semesterAdded, "Semester");
+            return new AddOperationResult<Semester>(semesterAdded, "Semester");
         }
 
         public OperationResult<Semester> DeleteSemester(int id)
         {
             var semesterDeleted = _repo.DeleteSemester(id);
-            return new DeletedOperationResult<Semester>(semesterDeleted, "Semester", id);
+            return new DeleteOperationResult<Semester>(semesterDeleted, "Semester", id);
         }
 
         public OperationResult<List<Semester>> GetAllSemesters()

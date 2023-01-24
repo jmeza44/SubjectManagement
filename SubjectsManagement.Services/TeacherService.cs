@@ -16,14 +16,14 @@ namespace SubjectsManagement.Services
         public OperationResult<Teacher?> AddTeacher(TeacherDto teacherDto)
         {
             var teacher = _repo.AddTeacher((Teacher)teacherDto);
-            return new AddedOperationResult<Teacher?>(teacher, "Teacher");
+            return new AddOperationResult<Teacher?>(teacher, "Teacher");
         }
 
         public OperationResult<Teacher?> DeleteTeacher(int id)
         {
 
             var teacher = _repo.DeleteTeacher(id);
-            return new DeletedOperationResult<Teacher?>(teacher, "Teacher", id);
+            return new DeleteOperationResult<Teacher?>(teacher, "Teacher", id);
         }
 
         public OperationResult<List<Teacher>> GetAllTeachers()

@@ -17,54 +17,54 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddClassroom([FromBody] ClassroomDto classroom)
+        public IActionResult AddClassroom([FromBody] ClassroomDto classroomDto)
         {
-            var _result = _serv.AddClassroom(classroom);
-            if (_result.Result != null)
+            var result = _serv.AddClassroom(classroomDto);
+            if (result.Result != null)
             {
-                return Ok(_result);
+                return Ok(result);
             }
-            return BadRequest(_result);
+            return BadRequest(result);
         }
 
         [HttpDelete]
         public IActionResult DeleteClassroom([FromQuery] int id)
         {
-            var _result = _serv.DeleteClassroom(id);
-            if (_result.Result != null)
+            var result = _serv.DeleteClassroom(id);
+            if (result.Result != null)
             {
-                return Ok(_result);
+                return Ok(result);
             }
-            return NotFound(_result);
+            return NotFound(result);
         }
 
         [HttpGet]
         public IActionResult GetAllClassrooms()
         {
-            var _result = _serv.GetAllClassrooms();
-            return Ok(_result);
+            var result = _serv.GetAllClassrooms();
+            return Ok(result);
         }
 
         [HttpGet("{id:int}")]
         public IActionResult GetClassroom(int id)
         {
-            var _result = _serv.GetClassroom(id);
-            if (_result.Result != null)
+            var result = _serv.GetClassroom(id);
+            if (result.Result != null)
             {
-                return Ok(_result);
+                return Ok(result);
             }
-            return NotFound(_result);
+            return NotFound(result);
         }
 
         [HttpPut]
-        public IActionResult UpdateClassroom([FromQuery] int id, [FromBody] ClassroomDto classroom)
+        public IActionResult UpdateClassroom([FromQuery] int id, [FromBody] ClassroomDto classroomDto)
         {
-            var _result = _serv.UpdateClassroom(id, classroom);
-            if (_result.Result != null)
+            var result = _serv.UpdateClassroom(id, classroomDto);
+            if (result.Result != null)
             {
-                return Ok(_result);
+                return Ok(result);
             }
-            return NotFound(_result);
+            return NotFound(result);
         }
     }
 }
