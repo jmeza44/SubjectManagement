@@ -8,6 +8,6 @@ namespace SubjectsManagement.Domain.Abstractions
         Classroom DeleteClassroom(int id);
         List<Classroom> GetAllClassrooms();
         Classroom GetClassroom(int id);
-        Classroom UpdateClassRoom(int id, Classroom classroom);
+        Classroom UpdateClassroom(int id, Classroom classroom);
     }
 }
