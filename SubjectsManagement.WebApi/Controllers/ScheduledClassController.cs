@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SubjectsManagement.Domain.Abstractions;
+using SubjectsManagement.Domain.Abstractions.Services;
 using SubjectsManagement.Domain.Dtos;
 
 namespace SubjectsManagement.WebApi.Controllers

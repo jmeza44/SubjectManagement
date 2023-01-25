@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using SubjectsManagement.Domain.Abstractions;
+using SubjectsManagement.Domain.Abstractions.Repositories;
+using SubjectsManagement.Domain.Abstractions.Services;
 using SubjectsManagement.Persistence;
 using SubjectsManagement.Persistence.Repositories;
 using SubjectsManagement.Services;
@@ -24,6 +25,12 @@ builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 builder.Services.AddScoped<ISemesterService, SemesterService>();
 builder.Services.AddScoped<ISemesterRepository, SemesterRepository>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
+builder.Services.AddScoped<ICourtService, CourtService>();
+builder.Services.AddScoped<ICourtRepository, CourtRepository>();
+builder.Services.AddScoped<IGradeService, GradeService>();
+builder.Services.AddScoped<IGradeRepository, GradeRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins,

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SubjectsManagement.Domain.Abstractions;
+using SubjectsManagement.Domain.Abstractions.Repositories;
 using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 

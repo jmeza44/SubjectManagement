@@ -6,47 +6,47 @@ namespace SubjectsManagement.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubjectController : ControllerBase
+    public class GradeController : ControllerBase
     {
-        private readonly ISubjectService _serv;
+        private readonly IGradeService _serv;
 
-        public SubjectController(ISubjectService serv)
+        public GradeController(IGradeService serv)
         {
             _serv = serv;
         }
 
         [HttpPost]
-        public IActionResult AddSubject([FromBody] SubjectDto subjectDto)
+        public IActionResult AddGrade([FromBody] GradeDto gradeDto)
         {
-            var result = _serv.AddSubject(subjectDto);
+            var result = _serv.AddGrade(gradeDto);
             return result != null ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
-        public IActionResult DeleteSubject([FromQuery] int id)
+        public IActionResult DeleteGrade([FromQuery] int id)
         {
-            var result = _serv.DeleteSubject(id);
+            var result = _serv.DeleteGrade(id);
             return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpGet]
-        public IActionResult GetAllSubjects()
+        public IActionResult GetAllGrades()
         {
-            var result = _serv.GetAllSubjects();
+            var result = _serv.GetAllGrades();
             return Ok(result);
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetSubject(int id)
+        public IActionResult GetGrade(int id)
         {
-            var result = _serv.GetSubject(id);
+            var result = _serv.GetGrade(id);
             return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpPut]
-        public IActionResult UpdateSubject([FromQuery] int id, [FromBody] SubjectDto subjectDto)
+        public IActionResult UpdateGrade([FromQuery] int id, [FromBody] GradeDto gradeDto)
         {
-            var result = _serv.UpdateSubject(id, subjectDto);
+            var result = _serv.UpdateGrade(id, gradeDto);
             return result != null ? Ok(result) : NotFound(result);
         }
     }

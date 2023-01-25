@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace SubjectsManagement.Domain.Models
+﻿namespace SubjectsManagement.Domain.Models
 {
     public class Grade
     {

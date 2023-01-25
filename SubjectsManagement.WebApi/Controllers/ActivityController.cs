@@ -6,47 +6,47 @@ namespace SubjectsManagement.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubjectController : ControllerBase
+    public class ActivityController : ControllerBase
     {
-        private readonly ISubjectService _serv;
+        private readonly IActivityService _serv;
 
-        public SubjectController(ISubjectService serv)
+        public ActivityController(IActivityService serv)
         {
             _serv = serv;
         }
 
         [HttpPost]
-        public IActionResult AddSubject([FromBody] SubjectDto subjectDto)
+        public IActionResult AddActivity([FromBody] ActivityDto activityDto)
         {
-            var result = _serv.AddSubject(subjectDto);
+            var result = _serv.AddActivity(activityDto);
             return result != null ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
-        public IActionResult DeleteSubject([FromQuery] int id)
+        public IActionResult DeleteActivity([FromQuery] int id)
         {
-            var result = _serv.DeleteSubject(id);
+            var result = _serv.DeleteActivity(id);
             return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpGet]
-        public IActionResult GetAllSubjects()
+        public IActionResult GetAllActivities()
         {
-            var result = _serv.GetAllSubjects();
+            var result = _serv.GetAllActivities();
             return Ok(result);
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetSubject(int id)
+        public IActionResult GetActivity(int id)
         {
-            var result = _serv.GetSubject(id);
+            var result = _serv.GetActivity(id);
             return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpPut]
-        public IActionResult UpdateSubject([FromQuery] int id, [FromBody] SubjectDto subjectDto)
+        public IActionResult UpdateActivity([FromQuery] int id, [FromBody] ActivityDto activityDto)
         {
-            var result = _serv.UpdateSubject(id, subjectDto);
+            var result = _serv.UpdateActivity(id, activityDto);
             return result != null ? Ok(result) : NotFound(result);
         }
     }

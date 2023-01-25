@@ -1,4 +1,4 @@
-﻿using SubjectsManagement.Domain.Abstractions;
+﻿using SubjectsManagement.Domain.Abstractions.Repositories;
 using SubjectsManagement.Domain.Models;
 
 namespace SubjectsManagement.Persistence.Repositories

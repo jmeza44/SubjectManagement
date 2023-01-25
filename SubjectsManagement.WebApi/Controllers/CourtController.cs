@@ -6,47 +6,47 @@ namespace SubjectsManagement.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubjectController : ControllerBase
+    public class CourtController : ControllerBase
     {
-        private readonly ISubjectService _serv;
+        private readonly ICourtService _serv;
 
-        public SubjectController(ISubjectService serv)
+        public CourtController(ICourtService serv)
         {
             _serv = serv;
         }
 
         [HttpPost]
-        public IActionResult AddSubject([FromBody] SubjectDto subjectDto)
+        public IActionResult AddCourt([FromBody] CourtDto courtDto)
         {
-            var result = _serv.AddSubject(subjectDto);
+            var result = _serv.AddCourt(courtDto);
             return result != null ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
-        public IActionResult DeleteSubject([FromQuery] int id)
+        public IActionResult DeleteCourt([FromQuery] int id)
         {
-            var result = _serv.DeleteSubject(id);
+            var result = _serv.DeleteCourt(id);
             return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpGet]
-        public IActionResult GetAllSubjects()
+        public IActionResult GetAllCourts()
         {
-            var result = _serv.GetAllSubjects();
+            var result = _serv.GetAllCourts();
             return Ok(result);
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetSubject(int id)
+        public IActionResult GetCourt(int id)
         {
-            var result = _serv.GetSubject(id);
+            var result = _serv.GetCourt(id);
             return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpPut]
-        public IActionResult UpdateSubject([FromQuery] int id, [FromBody] SubjectDto subjectDto)
+        public IActionResult UpdateCourt([FromQuery] int id, [FromBody] CourtDto courtDto)
         {
-            var result = _serv.UpdateSubject(id, subjectDto);
+            var result = _serv.UpdateCourt(id, courtDto);
             return result != null ? Ok(result) : NotFound(result);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 
-namespace SubjectsManagement.Domain.Abstractions
+namespace SubjectsManagement.Domain.Abstractions.Services
 {
     public interface IScheduledClassService
     {
