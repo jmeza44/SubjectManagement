@@ -1,5 +1,4 @@
 ﻿using SubjectsManagement.Domain.Abstractions;
-using SubjectsManagement.Domain.Common;
 using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 
@@ -13,35 +12,34 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public OperationResult<Teacher?> AddTeacher(TeacherDto teacherDto)
+        public Teacher AddTeacher(TeacherDto teacherDto)
         {
             var teacher = _repo.AddTeacher((Teacher)teacherDto);
-            return new AddOperationResult<Teacher?>(teacher, "Teacher");
+            return teacher;
         }
 
-        public OperationResult<Teacher?> DeleteTeacher(int id)
+        public Teacher DeleteTeacher(int id)
         {
-
             var teacher = _repo.DeleteTeacher(id);
-            return new DeleteOperationResult<Teacher?>(teacher, "Teacher", id);
+            return teacher;
         }
 
-        public OperationResult<List<Teacher>> GetAllTeachers()
+        public List<Teacher> GetAllTeachers()
         {
             var teachers = _repo.GetAllTeachers();
-            return new GetAllOperationResult<List<Teacher>>(teachers, "Teacher", teachers.Count);
+            return teachers;
         }
 
-        public OperationResult<Teacher?> GetTeacher(int id)
+        public Teacher GetTeacher(int id)
         {
             var teacher = _repo.GetTeacher(id);
-            return new GetOperationResult<Teacher?>(teacher, "Teacher", id);
+            return teacher;
         }
 
-        public OperationResult<Teacher?> UpdateTeacher(int id, TeacherDto teacherDto)
+        public Teacher UpdateTeacher(int id, TeacherDto teacherDto)
         {
             var teacher = _repo.UpdateTeacher(id, (Teacher)teacherDto);
-            return new UpdateOperationResult<Teacher?>(teacher, "Teacher", id);
+            return teacher;
         }
     }
 }

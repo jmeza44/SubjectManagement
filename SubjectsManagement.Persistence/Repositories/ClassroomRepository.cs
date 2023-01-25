@@ -1,11 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SubjectsManagement.Domain.Abstractions;
+﻿using SubjectsManagement.Domain.Abstractions;
 using SubjectsManagement.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SubjectsManagement.Persistence.Repositories
 {
@@ -46,7 +40,7 @@ namespace SubjectsManagement.Persistence.Repositories
             return _classroom;
         }
 
-        public Classroom UpdateClassRoom(int id, Classroom classroom)
+        public Classroom UpdateClassroom(int id, Classroom classroom)
         {
             var _classroom = _context.Classrooms.FirstOrDefault(c => c.Id == id);
             if (_classroom != null)

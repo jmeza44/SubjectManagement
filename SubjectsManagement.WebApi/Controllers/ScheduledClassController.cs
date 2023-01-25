@@ -19,14 +19,14 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult AddScheduledClass([FromBody] ScheduledClassDto scheduledClassDto)
         {
             var result = _serv.AddScheduledClass(scheduledClassDto);
-            return Ok(result);
+            return result != null ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
         public IActionResult DeleteScheduledClass([FromQuery] int id)
         {
             var result = _serv.DeleteScheduledClass(id);
-            return Ok(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpGet]
@@ -40,14 +40,14 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult GetScheduledClass(int id)
         {
             var result = _serv.GetScheduledClass(id);
-            return result == null ? NotFound() : Ok(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpPut]
         public IActionResult UpdateScheduledClass([FromQuery] int id, [FromBody] ScheduledClassDto scheduledClassDto)
         {
             var result = _serv.UpdateScheduledClass(id, scheduledClassDto);
-            return Ok(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
     }
 }

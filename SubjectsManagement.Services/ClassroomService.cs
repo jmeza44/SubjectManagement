@@ -1,5 +1,4 @@
 ﻿using SubjectsManagement.Domain.Abstractions;
-using SubjectsManagement.Domain.Common;
 using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 
@@ -14,34 +13,34 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public OperationResult<Classroom?> AddClassroom(ClassroomDto classroomDto)
+        public Classroom AddClassroom(ClassroomDto classroomDto)
         {
             var classroom = _repo.AddClassroom((Classroom)classroomDto);
-            return new AddOperationResult<Classroom?>(classroom, "Classroom");
+            return classroom;
         }
 
-        public OperationResult<Classroom?> DeleteClassroom(int id)
+        public Classroom DeleteClassroom(int id)
         {
             var classroom = _repo.DeleteClassroom(id);
-            return new DeleteOperationResult<Classroom?>(classroom, "Classroom", id);
+            return classroom;
         }
 
-        public OperationResult<List<Classroom>> GetAllClassrooms()
+        public List<Classroom> GetAllClassrooms()
         {
-            var classrooms = _repo.GetAllClassrooms();
-            return new GetAllOperationResult<List<Classroom>>(classrooms, "Classroom", classrooms.Count);
+            var scheduledClasses = _repo.GetAllClassrooms();
+            return scheduledClasses;
         }
 
-        public OperationResult<Classroom?> GetClassroom(int id)
+        public Classroom GetClassroom(int id)
         {
-            var _classroom = _repo.GetClassroom(id);
-                return new GetOperationResult<Classroom?>(_classroom, "Classroom", id);
+            var classroom = _repo.GetClassroom(id);
+            return classroom;
         }
 
-        public OperationResult<Classroom?> UpdateClassroom(int id, ClassroomDto classroomDto)
+        public Classroom UpdateClassroom(int id, ClassroomDto classroomDto)
         {
-            var classroom = _repo.UpdateClassRoom(id, (Classroom)classroomDto);
-            return new UpdateOperationResult<Classroom?>(classroom, "Classroom", id);
+            var classroom = _repo.UpdateClassroom(id, (Classroom)classroomDto);
+            return classroom;
         }
     }
 }

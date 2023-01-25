@@ -1,7 +1,7 @@
 ﻿using SubjectsManagement.Domain.Abstractions;
-using SubjectsManagement.Domain.Common;
 using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
+using System.Globalization;
 
 namespace SubjectsManagement.Services
 {
@@ -13,95 +13,34 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public OperationResult<Subject?> AddSubject(SubjectDto subjectDto)
+        public Subject AddSubject(SubjectDto subjectDto)
         {
-            var _subject = _repo.AddSubject((Subject)subjectDto); ;
-            if (_subject != null)
-            {
-                return new OperationResult<Subject?>()
-                {
-                    Message = "Success",
-                    Description = "Subject added propertly",
-                    Result = _subject
-                };
-            }
-            return new OperationResult<Subject?>()
-            {
-                Message = "Error",
-                Description = "Subject couldn't be added",
-                Result = null
-            };
+            var subject = _repo.AddSubject((Subject)subjectDto);
+            return subject;
         }
 
-        public OperationResult<Subject?> DeleteSubject(int id)
+        public Subject DeleteSubject(int id)
         {
-            var _subject = _repo.DeleteSubject(id);
-            if (_subject != null)
-            {
-                return new OperationResult<Subject?>()
-                {
-                    Message = "Success",
-                    Description = "Subject deleted propertly",
-                    Result = _subject
-                };
-            }
-            return new OperationResult<Subject?>()
-            {
-                Message = "Error",
-                Description = $"Subject with id {id} found",
-                Result = null
-            };
+            var subject = _repo.DeleteSubject(id);
+            return subject;
         }
 
-        public OperationResult<List<Subject>> GetAllSubjects()
+        public List<Subject> GetAllSubjects()
         {
-            var _subject = _repo.GetAllSubjects();
-            return new OperationResult<List<Subject>>()
-            {
-                Message = "Success",
-                Description = $"{_subject.Count} Subject(s) retrieved propertly",
-                Result = _subject
-            };
+            var subjects = _repo.GetAllSubjects();
+            return subjects;
         }
 
-        public OperationResult<Subject?> GetSubject(int id)
+        public Subject GetSubject(int id)
         {
-            var _subject = _repo.GetSubject(id);
-            if (_subject != null)
-            {
-                return new OperationResult<Subject?>()
-                {
-                    Message = "Success",
-                    Description = $"Subject with id {id} found",
-                    Result = _subject
-                };
-            }
-            return new OperationResult<Subject?>()
-            {
-                Message = "Error",
-                Description = $"Subject with id {id} couldn't be found",
-                Result = null
-            };
+            var subject = _repo.GetSubject(id);
+            return subject;
         }
 
-        public OperationResult<Subject?> UpdateSubject(int id, SubjectDto subjectDto)
+        public Subject UpdateSubject(int id, SubjectDto subjectDto)
         {
-            var _subject = _repo.UpdateSubject(id, (Subject)subjectDto);
-            if (_subject != null)
-            {
-                return new OperationResult<Subject?>()
-                {
-                    Message = "Success",
-                    Description = "Subject updated propertly",
-                    Result = _subject
-                };
-            }
-            return new OperationResult<Subject?>()
-            {
-                Message = "Error",
-                Description = $"Subject with id {id} couldn't be found",
-                Result = null
-            };
+            var subject = _repo.UpdateSubject(id, (Subject)subjectDto);
+            return subject;
         }
     }
 }

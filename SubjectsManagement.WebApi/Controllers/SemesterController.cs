@@ -18,22 +18,14 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult AddSemester([FromBody] SemesterDto semester)
         {
             var result = _serv.AddSemester(semester);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result != null ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
         public IActionResult DeleteSemester([FromQuery] int id)
         {
             var result = _serv.DeleteSemester(id);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpGet]
@@ -47,22 +39,14 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult GetSemester(int id)
         {
             var result = _serv.GetSemester(id);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpPut]
         public IActionResult UpdateSemester([FromQuery] int id, [FromBody] SemesterDto semester)
         {
             var result = _serv.UpdateSemester(id, semester);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
     }
 }

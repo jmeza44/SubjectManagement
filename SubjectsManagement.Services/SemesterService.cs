@@ -1,5 +1,4 @@
 ﻿using SubjectsManagement.Domain.Abstractions;
-using SubjectsManagement.Domain.Common;
 using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 
@@ -13,35 +12,34 @@ namespace SubjectsManagement.Services
             _repo = repo;
         }
 
-        public OperationResult<Semester> AddSemester(SemesterDto semesterDto)
+        public Semester AddSemester(SemesterDto semesterDto)
         {
-            var semesterAdded = _repo.AddSemester((Semester)semesterDto);
-            return new AddOperationResult<Semester>(semesterAdded, "Semester");
+            var semester = _repo.AddSemester((Semester)semesterDto);
+            return semester;
         }
 
-        public OperationResult<Semester> DeleteSemester(int id)
+        public Semester DeleteSemester(int id)
         {
-            var semesterDeleted = _repo.DeleteSemester(id);
-            return new DeleteOperationResult<Semester>(semesterDeleted, "Semester", id);
+            var semester = _repo.DeleteSemester(id);
+            return semester;
         }
 
-        public OperationResult<List<Semester>> GetAllSemesters()
+        public List<Semester> GetAllSemesters()
         {
-            var semesters = _repo.GetAllSemesters();
-            return new GetAllOperationResult<List<Semester>>(semesters, "Semester", semesters.Count);
+            var semester = _repo.GetAllSemesters();
+            return semester;
         }
 
-        public OperationResult<Semester> GetSemester(int id)
+        public Semester GetSemester(int id)
         {
             var semester = _repo.GetSemester(id);
-            return new GetOperationResult<Semester>(semester, "Semester", id);
+            return semester;
         }
 
-        public OperationResult<Semester> UpdateSemester(int id, SemesterDto semesterDto)
+        public Semester UpdateSemester(int id, SemesterDto semesterDto)
         {
             var semester = _repo.UpdateSemester(id, (Semester)semesterDto);
-            return new UpdateOperationResult<Semester>(semester, "Semester", id);
-
+            return semester;
         }
     }
 }

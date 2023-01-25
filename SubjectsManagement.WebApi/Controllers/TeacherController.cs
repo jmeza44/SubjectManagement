@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SubjectsManagement.Domain.Abstractions;
 using SubjectsManagement.Domain.Dtos;
 
@@ -20,22 +19,14 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult AddTeacher([FromBody] TeacherDto teacherDto)
         {
             var result = _serv.AddTeacher(teacherDto);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result != null ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
         public IActionResult DeleteTeacher([FromQuery] int id)
         {
             var result = _serv.DeleteTeacher(id);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpGet]
@@ -49,22 +40,14 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult GetTeacher(int id)
         {
             var result = _serv.GetTeacher(id);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
 
         [HttpPut]
         public IActionResult UpdateTeacher([FromQuery] int id, [FromBody] TeacherDto teacherDto)
         {
             var result = _serv.UpdateTeacher(id, teacherDto);
-            if (result.Result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            return result != null ? Ok(result) : NotFound(result);
         }
     }
 }
