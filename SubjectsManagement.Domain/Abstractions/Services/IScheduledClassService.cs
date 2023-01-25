@@ -7,8 +7,10 @@ namespace SubjectsManagement.Domain.Abstractions.Services
     {
         ScheduledClass AddScheduledClass(ScheduledClassDto scheduledClassDto);
         ScheduledClass DeleteScheduledClass(int id);
-        List<ScheduledClass> GetAllScheduledClassess();
+        List<ScheduledClass> GetAllScheduledClasses();
         ScheduledClass GetScheduledClass(int id);
+        List<ScheduledClass> GetScheduledClassesOf(int subjectId);
+        Classroom GetRelatedClassroom(int scheduledClassId);
         ScheduledClass UpdateScheduledClass(int id, ScheduledClassDto scheduledClassDto);
     }
 }

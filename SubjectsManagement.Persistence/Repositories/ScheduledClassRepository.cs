@@ -32,7 +32,7 @@ namespace SubjectsManagement.Persistence.Repositories
             return _scheduledClass;
         }
 
-        public List<ScheduledClass> GetAllScheduledClassess()
+        public List<ScheduledClass> GetAllScheduledClasses()
         {
             return _context.ScheduledClasses.Include(s => s.Classroom)
                 .Include(s => s.Subject)
@@ -43,6 +43,19 @@ namespace SubjectsManagement.Persistence.Repositories
         {
             var _scheduledClass = _context.ScheduledClasses.FirstOrDefault(s => s.Id == id);
             return _scheduledClass;
+        }
+
+        public List<ScheduledClass> GetScheduledClassesOf(int subjectId)
+        {
+            var scheduledClasses = _context.ScheduledClasses.Where(sc => sc.SubjectId == subjectId).ToList();
+            return scheduledClasses;
+        }
+
+        public Classroom GetRelatedClassroom(int scheduledClassId)
+        {
+            var classroom = _context.ScheduledClasses.Where(sch => sch.Id == scheduledClassId)
+                .Select(sch => sch.Classroom).FirstOrDefault();
+            return classroom;
         }
 
         public ScheduledClass UpdateScheduledClass(int id, ScheduledClass scheduledClass)

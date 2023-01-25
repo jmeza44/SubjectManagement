@@ -30,9 +30,9 @@ namespace SubjectsManagement.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllScheduledClassess()
+        public IActionResult GetAllScheduledClasses()
         {
-            var result = _serv.GetAllScheduledClassess();
+            var result = _serv.GetAllScheduledClasses();
             return Ok(result);
         }
 
@@ -40,6 +40,20 @@ namespace SubjectsManagement.WebApi.Controllers
         public IActionResult GetScheduledClass(int id)
         {
             var result = _serv.GetScheduledClass(id);
+            return result != null ? Ok(result) : NotFound(result);
+        }
+
+        [HttpGet("Subject/{subjectId:int}")]
+        public IActionResult GetScheduledClassesOf(int subjectId)
+        {
+            var result = _serv.GetScheduledClassesOf(subjectId);
+            return result != null ? Ok(result) : NotFound(result);
+        }
+
+        [HttpGet("Classroom/{scheduledClassId:int}")]
+        public IActionResult GetRelatedClassroom(int scheduledClassId)
+        {
+            var result = _serv.GetRelatedClassroom(scheduledClassId);
             return result != null ? Ok(result) : NotFound(result);
         }
 

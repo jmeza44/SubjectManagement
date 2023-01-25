@@ -26,9 +26,9 @@ namespace SubjectsManagement.Services
             return scheduledClass;
         }
 
-        public List<ScheduledClass> GetAllScheduledClassess()
+        public List<ScheduledClass> GetAllScheduledClasses()
         {
-            var scheduledClasses = _repo.GetAllScheduledClassess();
+            var scheduledClasses = _repo.GetAllScheduledClasses();
             return scheduledClasses;
         }
 
@@ -36,6 +36,18 @@ namespace SubjectsManagement.Services
         {
             var scheduledClass = _repo.GetScheduledClass(id);
             return scheduledClass;
+        }
+
+        public List<ScheduledClass> GetScheduledClassesOf(int subjectId)
+        {
+            var scheduledClasses = _repo.GetScheduledClassesOf(subjectId);
+            return scheduledClasses;
+        }
+
+        public Classroom GetRelatedClassroom(int scheduledClassId)
+        {
+            var classroom = _repo.GetRelatedClassroom(scheduledClassId);
+            return classroom;
         }
 
         public ScheduledClass UpdateScheduledClass(int id, ScheduledClassDto scheduledClassDto)
