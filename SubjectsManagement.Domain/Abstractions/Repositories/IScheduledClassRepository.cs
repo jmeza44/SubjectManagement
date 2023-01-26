@@ -10,7 +10,6 @@ namespace SubjectsManagement.Domain.Abstractions.Repositories
         List<ScheduledClass> GetAllScheduledClasses();
         ScheduledClass GetScheduledClass(int id);
         List<ScheduledClass> GetScheduledClassesOf(int subjectId);
-        Classroom GetRelatedClassroom(int scheduledClassID);
         ScheduledClass UpdateScheduledClass(int id, ScheduledClass scheduledClass);
     }
 }

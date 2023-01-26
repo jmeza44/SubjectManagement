@@ -50,13 +50,6 @@ namespace SubjectsManagement.WebApi.Controllers
             return result != null ? Ok(result) : NotFound(result);
         }
 
-        [HttpGet("Classroom/{scheduledClassId:int}")]
-        public IActionResult GetRelatedClassroom(int scheduledClassId)
-        {
-            var result = _serv.GetRelatedClassroom(scheduledClassId);
-            return result != null ? Ok(result) : NotFound(result);
-        }
-
         [HttpPut]
         public IActionResult UpdateScheduledClass([FromQuery] int id, [FromBody] ScheduledClassDto scheduledClassDto)
         {

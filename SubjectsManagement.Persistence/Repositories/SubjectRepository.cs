@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SubjectsManagement.Domain.Abstractions.Repositories;
+using SubjectsManagement.Domain.Dtos;
 using SubjectsManagement.Domain.Models;
 
 namespace SubjectsManagement.Persistence.Repositories

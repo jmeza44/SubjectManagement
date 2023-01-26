@@ -47,15 +47,15 @@ namespace SubjectsManagement.Persistence.Repositories
 
         public List<ScheduledClass> GetScheduledClassesOf(int subjectId)
         {
-            var scheduledClasses = _context.ScheduledClasses.Where(sc => sc.SubjectId == subjectId).ToList();
+            var scheduledClasses = _context.ScheduledClasses.Include(sch => sch.Classroom)
+                .Where(sch => sch.SubjectId == subjectId)
+                .Select(sch => new ScheduledClass()
+                {
+                    StartTime = sch.StartTime,
+                    Duration = sch.Duration,
+                    Classroom = sch.Classroom
+                }).ToList();
             return scheduledClasses;
-        }
-
-        public Classroom GetRelatedClassroom(int scheduledClassId)
-        {
-            var classroom = _context.ScheduledClasses.Where(sch => sch.Id == scheduledClassId)
-                .Select(sch => sch.Classroom).FirstOrDefault();
-            return classroom;
         }
 
         public ScheduledClass UpdateScheduledClass(int id, ScheduledClass scheduledClass)

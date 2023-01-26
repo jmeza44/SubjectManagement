@@ -36,6 +36,13 @@ namespace SubjectsManagement.WebApi.Controllers
             return Ok(result);
         }
 
+        [HttpGet("/api/SubjectWithScheduledClasses")]
+        public IActionResult GetSubjectsWithScheduledClasses()
+        {
+            var result = _serv.GetSubjectsWithScheduledClasses();
+            return Ok(result);
+        }
+
         [HttpGet("{id:int}")]
         public IActionResult GetSubject(int id)
         {

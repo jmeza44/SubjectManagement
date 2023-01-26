@@ -8,6 +8,7 @@ namespace SubjectsManagement.Domain.Abstractions.Services
         Subject AddSubject(SubjectDto subjectDto);
         Subject DeleteSubject(int id);
         List<Subject> GetAllSubjects();
+        List<SubjectWithScheduledClassesDto> GetSubjectsWithScheduledClasses();
         Subject GetSubject(int id);
         Subject UpdateSubject(int id, SubjectDto subjectDto);
     }

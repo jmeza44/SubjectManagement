@@ -1,4 +1,5 @@
-﻿using SubjectsManagement.Domain.Models;
+﻿using SubjectsManagement.Domain.Dtos;
+using SubjectsManagement.Domain.Models;
 
 namespace SubjectsManagement.Domain.Abstractions.Repositories
 {

@@ -44,12 +44,6 @@ namespace SubjectsManagement.Services
             return scheduledClasses;
         }
 
-        public Classroom GetRelatedClassroom(int scheduledClassId)
-        {
-            var classroom = _repo.GetRelatedClassroom(scheduledClassId);
-            return classroom;
-        }
-
         public ScheduledClass UpdateScheduledClass(int id, ScheduledClassDto scheduledClassDto)
         {
             var scheduledClass = _repo.UpdateScheduledClass(id, (ScheduledClass)scheduledClassDto);

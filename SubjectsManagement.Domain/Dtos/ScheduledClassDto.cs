@@ -7,6 +7,7 @@ namespace SubjectsManagement.Domain.Dtos
         public DateTime StartTime { get; set; }
         public double Duration { get; set; }
         public int ClassroomId { get; set; }
+        public ClassroomDto ClassroomDto { get; set; }
         public int SubjectId { get; set; }
 
         public static explicit operator ScheduledClass(ScheduledClassDto scheduleClassDto)
@@ -16,6 +17,7 @@ namespace SubjectsManagement.Domain.Dtos
                 StartTime = scheduleClassDto.StartTime,
                 Duration = scheduleClassDto.Duration,
                 ClassroomId = scheduleClassDto.ClassroomId,
+                Classroom = (Classroom)scheduleClassDto.ClassroomDto,
                 SubjectId = scheduleClassDto.SubjectId,
             };
         }
@@ -26,6 +28,7 @@ namespace SubjectsManagement.Domain.Dtos
                 StartTime = scheduledClass.StartTime,
                 Duration = scheduledClass.Duration,
                 ClassroomId = scheduledClass.ClassroomId,
+                ClassroomDto = (ClassroomDto)scheduledClass.Classroom,
                 SubjectId = scheduledClass.SubjectId,
             };
         }
